@@ -3,5 +3,5 @@ pandas
 streamlit
 neurokit2
 wfdb
-os
 numpy
+os

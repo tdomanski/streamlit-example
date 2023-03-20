@@ -18,9 +18,33 @@ forums](https://discuss.streamlit.io).
 
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
+def load_files(path):
+    return [file for file in os.listdir(path) if 'patient' in file]
 
 with st.echo(code_location='below'):
+    wd = os.getcwd()
+    path = ''
+    patient_files = load_files(path)
+    for participant in patient_files:
+        path = wd + path + participant
+        filename = [i for i in os.listdir(path) if ".dat" in i][0]
+        file = path + "/" + filename
+        for i in range(12):
+            signal_name = wfdb.rdsamp(record_name=file[:-4])[1]['sig_name'][i]
+            signal = wfdb.rdsamp(record_name=file[:-4])[0][:, i]
+            channel = pd.DataFrame({str(signal_name): wfdb.rdsamp(record_name=file[:-4])[0][:, 0]})
+            data = pd.concat([data, channel], axis=1)
 
+            #filter lowpasshighpass and powerline
+            signal_ok = nk.signal_filter(signal, lowcut=0.05,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
+            
+            signal_notok = nk.signal_filter(signal, lowcut=0.5,highcut = 40,method='butterworth', order=2, window_size='default', powerline=50, show=False)
+        data["Participant"] = participant
+        data["Sample"] = range(len(data))
+        data["Sampling_Rate"] = 1000
+        data["Database"] = "PTB-Diagnostic-ECG-Database-1.0.0"
+        data["Sex"] = wfdb.rdsamp(file[:-4])[1]['comments'][1]
+        data["Age"] = wfdb.rdsamp(file[:-4])[1]['comments'][0]
     # total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
     # num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
 
