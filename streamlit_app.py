@@ -3,6 +3,8 @@ import altair as alt
 import math
 import pandas as pd
 import streamlit as st
+import neurokit2 as nk
+import wfdb
 
 """
 # Welcome to Streamlit!
