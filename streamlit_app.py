@@ -23,7 +23,7 @@ def load_files(path):
 
 with st.echo(code_location='below'):
     wd = os.getcwd()
-    path = ''
+    path = '/'
     patient_files = load_files(path)
     for participant in patient_files:
         path = wd + path + participant
