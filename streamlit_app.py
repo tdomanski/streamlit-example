@@ -45,6 +45,7 @@ with st.echo(code_location='below'):
         data["Database"] = "PTB-Diagnostic-ECG-Database-1.0.0"
         data["Sex"] = wfdb.rdsamp(file[:-4])[1]['comments'][1]
         data["Age"] = wfdb.rdsamp(file[:-4])[1]['comments'][0]
+        st.dataframe(data)
     # total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
     # num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
 
