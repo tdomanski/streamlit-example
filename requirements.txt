@@ -4,4 +4,3 @@ streamlit
 neurokit2
 wfdb
 numpy
-os
