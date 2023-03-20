@@ -29,6 +29,7 @@ with st.echo(code_location='below'):
         path = wd + path + participant
         filename = [i for i in os.listdir(path) if ".dat" in i][0]
         file = path + "/" + filename
+        data = pd.DataFrame()
         for i in range(12):
             signal_name = wfdb.rdsamp(record_name=file[:-4])[1]['sig_name'][i]
             signal = wfdb.rdsamp(record_name=file[:-4])[0][:, i]
