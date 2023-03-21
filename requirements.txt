@@ -1,6 +1,6 @@
-altair
 pandas
 streamlit
 neurokit2
 wfdb
 numpy
+plotly
