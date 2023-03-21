@@ -100,7 +100,7 @@ if st.checkbox('Demo Mode 😎', value=True):
             fig.update_yaxes(minor_ticks="inside")
             st.plotly_chart(fig)   
 else:
-    patient_files_label = ['Patient '+file.split('\\patient')[-1] for file in patient_files]
+    patient_files_label = ['Patient '+file.split('patient/')[-1] for file in patient_files]
     patients_selection = [st.selectbox('Choose patient', patient_files_label)]
     code = '''import neurokit2 as nk'''
     st.code(code, language='python')
