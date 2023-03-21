@@ -31,7 +31,7 @@ if 'done_diagnosis' not in st.session_state:
 
 st.title('ECG Signal Analysis')
 # with st.echo():
-path = 'C:/Users/tomir/Downloads/streamlit/streamlit-example/physionet.org/files/ptbdb/1.0.0/'
+path = 'patients/'
 patient_files = load_files(path)
 if st.checkbox('Demo Mode 😎', value=True):
     patient_files_label = ['Patient 001', 'Patient 002']
