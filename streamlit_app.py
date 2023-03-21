@@ -31,7 +31,7 @@ if 'done_diagnosis' not in st.session_state:
 
 st.title('ECG Signal Analysis')
 # with st.echo():
-path = 'patients/'
+path = 'physionet.org/files/ptbdb/1.0.0/'
 patient_files = load_files(path)
 if st.checkbox('Demo Mode 😎', value=True):
     patient_files_label = ['Patient 001', 'Patient 002']
@@ -100,7 +100,7 @@ if st.checkbox('Demo Mode 😎', value=True):
             fig.update_yaxes(minor_ticks="inside")
             st.plotly_chart(fig)   
 else:
-    patient_files_label = ['Patient '+file.split(path+'patient')[-1] for file in patient_files]
+    patient_files_label = ['Patient '+file.split('/patient')[-1] for file in patient_files]
     patients_selection = [st.selectbox('Choose patient', patient_files_label)]
     code = '''import neurokit2 as nk'''
     st.code(code, language='python')
