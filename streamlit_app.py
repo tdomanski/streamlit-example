@@ -196,13 +196,7 @@ else:
             #     dtick = 0.5
             # )
             # )
-            fig.update_layout(
-    yaxis = dict(
-        tickmode = 'array',
-        tickvals = [-1, -0.5, 0, 0.5, 1],
-        ticktext = [-1, -0.5, 0, 0.5, 1]
-    )
-)
+            fig.update_yaxes(range=[-1, 1], dtick=0.5)
 
             st.plotly_chart(fig, use_container_width=True)
             # fig, ax = plt.subplots()
