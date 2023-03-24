@@ -149,7 +149,7 @@ else:
             rand_value = random.randint(1000, signal.shape[0]-1000)
             rand_range = (rand_value, rand_value+1000)
             # fig = go.Figure()
-            fig = make_subplots(rows=12, cols=1, shared_xaxes=True, vertical_spacing=0.05, row_width=[0.4 for _ in range(12)])
+            fig = make_subplots(rows=12, cols=1, shared_xaxes=True, vertical_spacing=0.05, row_width=[0.5 for _ in range(12)])
             fig.update_layout(height=800)
             for i in range(12):
                 signal_name = rec[1]['sig_name'][i]
@@ -184,6 +184,7 @@ else:
             #                     name='Good Filter Settings'))
             # fig.update_xaxes(minor=dict(ticklen=6, tickcolor="gray", tickmode='auto', nticks=5, showgrid=True))
             # fig.update_yaxes(minor_ticks="inside")
+            fig.update_layout(yaxis=list(tickformat=',d'))
             st.plotly_chart(fig, use_container_width=True)
             # fig, ax = plt.subplots()
             # # ax.plot(signal_notok, color = 'r')
