@@ -6,6 +6,7 @@ import glob
 import re
 import plotly.graph_objects as go
 import random
+from plotly.subplots import make_subplots
 
 # """
 # # Welcome to Streamlit!
@@ -147,7 +148,8 @@ else:
             signal = rec[0][:, 0]
             rand_value = random.randint(1000, signal.shape[0]-1000)
             rand_range = (rand_value, rand_value+1000)
-            fig = go.Figure()
+            # fig = go.Figure()
+            fig = make_subplots(rows=12, cols=1)
             for i in range(12):
                 signal_name = rec[1]['sig_name'][i]
                 signal = rec[0][:, i]
@@ -156,7 +158,10 @@ else:
 
                 #filter lowpasshighpass and powerline
                 signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
-                fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
+                # fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
+                #                 mode='lines',
+                #                 name=signal_name))
+                fig.append_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
                                 mode='lines',
                                 name=signal_name))
             data["Participant"] = re.split('Patient', participant)[-1]
