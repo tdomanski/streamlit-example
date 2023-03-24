@@ -29,7 +29,11 @@ def load_record_file(record_name):
 
 if 'done_diagnosis' not in st.session_state:
     st.session_state['diagnosed'] = False
-
+st.set_page_config(
+    page_title="Electrophysiology Labs",
+    page_icon="🧊",
+    layout="wide"
+)
 st.title('ECG Signal Analysis')
 # with st.echo():
 path = 'physionet.org/files/ptbdb/1.0.0/'
