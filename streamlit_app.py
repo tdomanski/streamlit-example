@@ -199,8 +199,8 @@ else:
             fig.update_layout(
     yaxis = dict(
         tickmode = 'array',
-        tickvals = [-1, 0, 1],
-        ticktext = [-1, 0, 1]
+        tickvals = [-1, -0.5, 0, 0.5, 1],
+        ticktext = [-1, -0.5, 0, 0.5, 1]
     )
 )
 
