@@ -182,8 +182,8 @@ else:
             # fig.add_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
             #                     mode='lines',
             #                     name='Good Filter Settings'))
-            fig.update_xaxes(minor=dict(ticklen=6, tickcolor="gray", tickmode='auto', nticks=5, showgrid=True))
-            fig.update_yaxes(minor_ticks="inside")
+            # fig.update_xaxes(minor=dict(ticklen=6, tickcolor="gray", tickmode='auto', nticks=5, showgrid=True))
+            # fig.update_yaxes(minor_ticks="inside")
             st.plotly_chart(fig, use_container_width=True)
             # fig, ax = plt.subplots()
             # # ax.plot(signal_notok, color = 'r')
