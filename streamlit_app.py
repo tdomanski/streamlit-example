@@ -153,8 +153,7 @@ else:
             rand_value = random.randint(1000, signal.shape[0]-1000)
             rand_range = (rand_value, rand_value+1000)
             # fig = go.Figure()
-            fig = make_subplots(rows=12, cols=1, shared_xaxes=True, vertical_spacing=0.05, row_width=[0.8 for _ in range(12)])
-            fig.update_layout(height=800)
+            fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
             for i in range(12):
                 signal_name = rec[1]['sig_name'][i]
                 signal = rec[0][:, i]
@@ -196,8 +195,10 @@ else:
             #     dtick = 0.5
             # )
             # )
-            fig.update_yaxes(range=[-1, 1], dtick=0.5)
-
+            fig.update_yaxes(range=[-1.5, 1.5], dtick=0.75)
+            fig.update_layout(autosize=True,
+                  height=800,
+                 )
             st.plotly_chart(fig, use_container_width=True)
             # fig, ax = plt.subplots()
             # # ax.plot(signal_notok, color = 'r')
