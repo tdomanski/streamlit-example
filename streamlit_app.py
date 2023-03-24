@@ -143,8 +143,11 @@ else:
             filename = glob.glob(dir+'/*.dat*')[0]
             file = filename
             data = pd.DataFrame()
+            rec = load_record_file(file)
+            rand_value = random.randint(1000, signal.shape[0]-1000)
+            rand_range = (rand_value, rand_value+1000)
+            fig = go.Figure()
             for i in range(12):
-                rec = load_record_file(file)
                 signal_name = rec[1]['sig_name'][i]
                 signal = rec[0][:, i]
                 channel = pd.DataFrame({str(signal_name): rec[0][:, 0]})
@@ -152,7 +155,9 @@ else:
 
                 #filter lowpasshighpass and powerline
                 signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
-                signal_good = nk.signal_filter(signal, lowcut=0.05,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
+                fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
+                                mode='lines',
+                                name=signal_name))
             data["Participant"] = re.split('Patient', participant)[-1]
             data["Sample"] = range(len(data))
             data["Sampling_Rate"] = 1000
@@ -163,12 +168,10 @@ else:
             st.write('Patient '+re.split('Patient', participant)[-1])
             # st.write(Admission)
 
-            fig = go.Figure()
-            rand_value = random.randint(1000, signal.shape[0]-1000)
-            rand_range = (rand_value, rand_value+1000)
-            fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
-                                mode='lines',
-                                name='Custom Filter Settings'))
+            # fig = go.Figure()
+            # fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
+            #                     mode='lines',
+            #                     name='Custom Filter Settings'))
             # fig.add_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
             #                     mode='lines',
             #                     name='Good Filter Settings'))
