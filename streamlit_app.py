@@ -198,6 +198,7 @@ else:
             # fig.update_yaxes(range=[-1.5, 1.5], dtick=0.75)
             fig.update_layout(autosize=True,
                   height=800,
+                  title_text=signal_name
                  )
             st.plotly_chart(fig, use_container_width=True)
             # fig, ax = plt.subplots()
