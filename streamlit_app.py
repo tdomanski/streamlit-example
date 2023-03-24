@@ -149,7 +149,7 @@ else:
             rand_value = random.randint(1000, signal.shape[0]-1000)
             rand_range = (rand_value, rand_value+1000)
             # fig = go.Figure()
-            fig = make_subplots(rows=12, cols=1, shared_xaxes=True, vertical_spacing=0.05)
+            fig = make_subplots(rows=12, cols=1, shared_xaxes=True, vertical_spacing=0.05, row_width=[0.3 for _ in range(12)])
             fig.update_layout(height=800)
             for i in range(12):
                 signal_name = rec[1]['sig_name'][i]
