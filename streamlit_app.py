@@ -186,7 +186,7 @@ else:
             # fig.update_yaxes(minor_ticks="inside")
             # fig.update_layout(yaxis_tickformat =',d')
             fig.update_layout(
-            xaxis = dict(
+            yaxis = dict(
                 tickmode = 'linear',
                 tick0 = -1.0,
                 dtick = 0.5
