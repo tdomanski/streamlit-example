@@ -195,7 +195,7 @@ else:
             #     dtick = 0.5
             # )
             # )
-            fig.update_yaxes(range=[-1.5, 1.5], dtick=0.75)
+            # fig.update_yaxes(range=[-1.5, 1.5], dtick=0.75)
             fig.update_layout(autosize=True,
                   height=800,
                  )
