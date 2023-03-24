@@ -175,7 +175,7 @@ else:
             Admission = rec[1]['comments'][4]
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
-            st.write('Patient '+re.split('Patient', participant)[-1])
+            # st.write('Patient '+re.split('Patient', participant)[-1])
             # st.write(Admission)
 
             # fig = go.Figure()
@@ -198,7 +198,7 @@ else:
             # fig.update_yaxes(range=[-1.5, 1.5], dtick=0.75)
             fig.update_layout(autosize=True,
                   height=800,
-                  title_text=signal_name
+                  title_text='Patient '+re.split('Patient', participant)[-1]
                  )
             st.plotly_chart(fig, use_container_width=True)
             # fig, ax = plt.subplots()
