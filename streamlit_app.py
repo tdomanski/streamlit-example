@@ -184,7 +184,14 @@ else:
             #                     name='Good Filter Settings'))
             # fig.update_xaxes(minor=dict(ticklen=6, tickcolor="gray", tickmode='auto', nticks=5, showgrid=True))
             # fig.update_yaxes(minor_ticks="inside")
-            fig.update_layout(yaxis_tickformat =',d')
+            # fig.update_layout(yaxis_tickformat =',d')
+            fig.update_layout(
+            xaxis = dict(
+                tickmode = 'linear',
+                tick0 = -1.0,
+                dtick = 0.5
+            )
+            )
             st.plotly_chart(fig, use_container_width=True)
             # fig, ax = plt.subplots()
             # # ax.plot(signal_notok, color = 'r')
