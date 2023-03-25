@@ -103,8 +103,11 @@ if st.checkbox('Demo Mode 😎', value=True):
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
             st.write('Patient '+re.split('Patient', participant)[-1])
-            st.write(Admission)
-            st.plotly_chart(fig)   
+            # st.write(Admission)
+            fig.update_layout(autosize=True,
+                  height=800,
+                  title_text='Patient '+re.split('Patient', participant)[-1]+' - '+Admission)
+            st.plotly_chart(fig, use_container_width=True)   
 else:
     patient_files_label = ['Patient '+file.split('/patient')[-1] for file in patient_files]
     patients_selection = [st.selectbox('Choose patient', patient_files_label)]
