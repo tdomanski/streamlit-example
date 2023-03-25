@@ -75,7 +75,7 @@ if st.checkbox('Demo Mode 😎', value=True):
             data = pd.DataFrame()
             rec = load_record_file(file)
             signal = rec[0][:, 0]
-            rand_value = random.randint(1000, signal.shape[0]-1000)
+            rand_value = random.randint(1000, signal.shape[0]-3000)
             rand_range = (rand_value, rand_value+1000)
             # fig = go.Figure()
             fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
@@ -155,7 +155,7 @@ else:
             rec = load_record_file(file)
             signal = rec[0][:, 0]
             rand_value = random.randint(1000, signal.shape[0]-1000)
-            rand_range = (rand_value, rand_value+1000)
+            rand_range = (rand_value, rand_value+3000)
             # fig = go.Figure()
             fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
             for i in range(12):
