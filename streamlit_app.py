@@ -107,7 +107,7 @@ if st.checkbox('Demo Mode 😎', value=True):
             fig.update_layout(autosize=True,
                   height=800,
                   title_text='Patient '+re.split('Patient', participant)[-1]+' - '+Admission)
-            st.plotly_chart(fig, use_container_width=True)   
+            st.plotly_chart(fig, use_container_width=False)   
 else:
     patient_files_label = ['Patient '+file.split('/patient')[-1] for file in patient_files]
     patients_selection = [st.selectbox('Choose patient', patient_files_label)]
@@ -204,7 +204,7 @@ else:
                   height=800,
                   title_text='Patient '+re.split('Patient', participant)[-1]
                  )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=False)
             # fig, ax = plt.subplots()
             # # ax.plot(signal_notok, color = 'r')
             # ax.plot(signal_ok, color='g')
