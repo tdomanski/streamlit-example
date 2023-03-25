@@ -72,6 +72,7 @@ if st.checkbox('Demo Mode 😎', value=True):
             dir = path+'patient'+participant.split('Patient ')[-1]
             filename = glob.glob(dir+'/*.dat*')[0]
             file = filename
+            data = pd.DataFrame()
             rec = load_record_file(file)
             signal = rec[0][:, 0]
             rand_value = random.randint(1000, signal.shape[0]-1000)
