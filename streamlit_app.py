@@ -80,7 +80,7 @@ if st.checkbox('Demo Mode 😎', value=True):
             # fig = go.Figure()
             fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
             fig2 = make_subplots(rows=12, cols=1, shared_xaxes=True)
-            col10, col11 = st.columns()
+            col10, col11 = st.columns(2)
             for i in range(12):
                 signal_name = rec[1]['sig_name'][i]
                 signal = rec[0][:, i]
