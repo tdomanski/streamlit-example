@@ -72,9 +72,13 @@ if st.checkbox('Demo Mode 😎', value=True):
             dir = path+'patient'+participant.split('Patient ')[-1]
             filename = glob.glob(dir+'/*.dat*')[0]
             file = filename
-            data = pd.DataFrame()
+            rec = load_record_file(file)
+            signal = rec[0][:, 0]
+            rand_value = random.randint(1000, signal.shape[0]-1000)
+            rand_range = (rand_value, rand_value+1000)
+            # fig = go.Figure()
+            fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
             for i in range(12):
-                rec = load_record_file(file)
                 signal_name = rec[1]['sig_name'][i]
                 signal = rec[0][:, i]
                 channel = pd.DataFrame({str(signal_name): rec[0][:, 0]})
@@ -82,7 +86,14 @@ if st.checkbox('Demo Mode 😎', value=True):
 
                 #filter lowpasshighpass and powerline
                 signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
-                signal_good = nk.signal_filter(signal, lowcut=0.05,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
+                # fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
+                #                 mode='lines',
+                #                 name=signal_name))
+                fig.append_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
+                                mode='lines',
+                                name=signal_name),row=i+1, col=1)
+                # signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
+                # signal_good = nk.signal_filter(signal, lowcut=0.05,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
             data["Participant"] = re.split('Patient', participant)[-1]
             data["Sample"] = range(len(data))
             data["Sampling_Rate"] = 1000
@@ -92,17 +103,6 @@ if st.checkbox('Demo Mode 😎', value=True):
             data["Age"] = rec[1]['comments'][0]
             st.write('Patient '+re.split('Patient', participant)[-1])
             st.write(Admission)
-            fig = go.Figure()
-            rand_value = random.randint(1000, signal.shape[0]-1000)
-            rand_range = (rand_value, rand_value+1000)
-            fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
-                                mode='lines',
-                                name='Custom Filter Settings'))
-            fig.add_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
-                                mode='lines',
-                                name='Good Filter Settings'))
-            fig.update_xaxes(minor=dict(ticklen=6, tickcolor="gray", tickmode='auto', nticks=5, showgrid=True))
-            fig.update_yaxes(minor_ticks="inside")
             st.plotly_chart(fig)   
 else:
     patient_files_label = ['Patient '+file.split('/patient')[-1] for file in patient_files]
