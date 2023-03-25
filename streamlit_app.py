@@ -75,10 +75,12 @@ if st.checkbox('Demo Mode 😎', value=True):
             data = pd.DataFrame()
             rec = load_record_file(file)
             signal = rec[0][:, 0]
-            rand_value = random.randint(1000, signal.shape[0]-3000)
-            rand_range = (rand_value, rand_value+1000)
+            rand_value = random.randint(1000, signal.shape[0]-1000)
+            rand_range = (rand_value, rand_value+3000)
             # fig = go.Figure()
             fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
+            fig2 = make_subplots(rows=12, cols=1, shared_xaxes=True)
+            col10, col11 = st.columns()
             for i in range(12):
                 signal_name = rec[1]['sig_name'][i]
                 signal = rec[0][:, i]
@@ -87,12 +89,16 @@ if st.checkbox('Demo Mode 😎', value=True):
 
                 #filter lowpasshighpass and powerline
                 signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
+                signal_good = nk.signal_filter(signal, lowcut=0.05,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
                 # fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
                 #                 mode='lines',
                 #                 name=signal_name))
                 fig.append_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
                                 mode='lines',
                                 name=signal_name),row=i+1, col=1)
+                fig2.append_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
+                                mode='lines',
+                                name=signal_name),row=i+1, col=1)                
                 # signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
                 # signal_good = nk.signal_filter(signal, lowcut=0.05,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
             data["Participant"] = re.split('Patient', participant)[-1]
@@ -107,7 +113,10 @@ if st.checkbox('Demo Mode 😎', value=True):
             fig.update_layout(autosize=True,
                   height=800,
                   title_text='Patient '+re.split('Patient', participant)[-1]+' - '+Admission)
-            st.plotly_chart(fig, use_container_width=False)   
+            fig2.update_layout(autosize=True,
+                  height=800)
+            col10.plotly_chart(fig, use_container_width=False)   
+            col11.plotly_chart(fig2, use_container_width=False)
 else:
     patient_files_label = ['Patient '+file.split('/patient')[-1] for file in patient_files]
     patients_selection = [st.selectbox('Choose patient', patient_files_label)]
@@ -166,6 +175,7 @@ else:
 
                 #filter lowpasshighpass and powerline
                 signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
+                
                 # fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
                 #                 mode='lines',
                 #                 name=signal_name))
