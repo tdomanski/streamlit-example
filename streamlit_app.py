@@ -18,6 +18,11 @@ from plotly.subplots import make_subplots
 
 # In the meantime, below is an example of what you can do with just a few lines of code:
 # """
+st.set_page_config(
+    page_title="Electrophysiology Labs",
+    page_icon="🧊",
+    layout="wide"
+)
 
 language = st.selectbox('Select a language', ['Polish', 'English'])
 
@@ -32,11 +37,7 @@ def load_record_file(record_name):
 
 if 'done_diagnosis' not in st.session_state:
     st.session_state['diagnosed'] = False
-st.set_page_config(
-    page_title="Electrophysiology Labs",
-    page_icon="🧊",
-    layout="wide"
-)
+
 if language=='Polish':
     st.title('Analiza sygnału EKG')
 else:
