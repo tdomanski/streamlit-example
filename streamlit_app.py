@@ -143,7 +143,7 @@ if demo_mode:
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
             if language=='Polish':
-                st.subheader('Pacjent '+re.split('Patient', participant)[-1])
+                st.write('Pacjent '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'dolny_prog={lowcut}, gorny_prog={highcut}, metoda={method}, rzad={order}, moc_linii={powerline}')
@@ -151,7 +151,7 @@ if demo_mode:
                   height=800,
                   title_text=f'dolny_prog=0.05, gorny_prog=150, metoda={"butterworth"}, rzad=2, moc_linii=50')
             else:
-                st.subheader('Patient '+re.split('Patient', participant)[-1])
+                st.write('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'lowcut={lowcut}, highcut={highcut}, method={method}, order={order}, powerline={powerline}')
@@ -295,7 +295,7 @@ else:
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
             if language=='Polish':
-                st.subheader('Pacjent '+re.split('Patient', participant)[-1])
+                st.write('Pacjent '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'dolny_prog={lowcut}, gorny_prog={highcut}, metoda={method}, rzad={order}, moc_linii={powerline}')
@@ -303,7 +303,7 @@ else:
                   height=800,
                   title_text=f'dolny_prog=0.05, gorny_prog=150, metoda={"butterworth"}, rzad=2, moc_linii=50')
             else:
-                st.subheader('Patient '+re.split('Patient', participant)[-1])
+                st.write('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'lowcut={lowcut}, highcut={highcut}, method={method}, order={order}, powerline={powerline}')
