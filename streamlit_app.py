@@ -147,13 +147,17 @@ if demo_mode:
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'dolny_prog={lowcut}, gorny_prog={highcut}, metoda={method}, rzad={order}, moc_linii={powerline}')
+                fig2.update_layout(autosize=True,
+                  height=800,
+                  title_text=f'dolny_prog=0.05, gorny_prog=150, metoda={"butterworth"}, rzad=2, moc_linii=50')
             else:
                 st.subheader('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text=f'lowcut=0.05, highcut=150, method={"butterworth"}, order=2, powerline=50')
-            fig2.update_layout(autosize=True,
-                  height=800)
+                  title_text=f'lowcut={lowcut}, highcut={highcut}, method={method}, order={order}, powerline={powerline}')
+                fig2.update_layout(autosize=True,
+                    height=800,
+                    title_text=f'lowcut=0.05, highcut=150, method={"butterworth"}, order=2, powerline=50')
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
 else:
@@ -295,12 +299,16 @@ else:
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'dolny_prog={lowcut}, gorny_prog={highcut}, metoda={method}, rzad={order}, moc_linii={powerline}')
+                fig2.update_layout(autosize=True,
+                  height=800,
+                  title_text=f'dolny_prog=0.05, gorny_prog=150, metoda={"butterworth"}, rzad=2, moc_linii=50')
             else:
                 st.subheader('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text=f'lowcut=0.05, highcut=150, method={"butterworth"}, order=2, powerline=50')
-            fig2.update_layout(autosize=True,
-                  height=800)
+                  title_text=f'lowcut={lowcut}, highcut={highcut}, method={method}, order={order}, powerline={powerline}')
+                fig2.update_layout(autosize=True,
+                    height=800,
+                    title_text=f'lowcut=0.05, highcut=150, method={"butterworth"}, order=2, powerline=50')
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
