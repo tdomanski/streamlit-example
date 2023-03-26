@@ -12,7 +12,7 @@ st.set_page_config(
     page_title="ECG Signal Analysis",
     page_icon="❤️",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="collapsed"
 )
 with st.sidebar:
     language = st.selectbox('Wybierz język aplikacji/Select app language', ['Polish', 'English'])
