@@ -145,16 +145,20 @@ if demo_mode:
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
             if language=='Polish':
-                st.write('Pacjent '+re.split('Patient', participant)[-1])
+                diagnosis_options = {
+                "Cardiomyopathy": "Kardiomiopatia",
+                "Healthy control": "Zdrowy pacjent",
+                "Bundle branch block": "Blokada odnogi pęczka Hisa",
+                "Myocarditis": "Zapalenie mięśnia sercowego",
+                "Myocardial infarction": "Zawał serca",
+                }
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text='Pacjent '+re.split('Pacjent', participant)[-1]+' - '+Admission)
+                  title_text='Pacjent '+re.split('Patient', participant)[-1]+' - '+diagnosis_options[Admission.split('Reason for admission: ')[1]])
             else:
-                st.write('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text='Pacjent '+re.split('Patient', participant)[-1]+' - '+Admission)
-            # st.write(Admission)
+                  title_text='Patient '+re.split('Patient', participant)[-1]+' - '+Admission.split('Reason for admission: ')[1])
             fig2.update_layout(autosize=True,
                   height=800)
             col10.plotly_chart(fig, use_container_width=False)   
