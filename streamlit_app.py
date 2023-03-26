@@ -9,8 +9,8 @@ import random
 from plotly.subplots import make_subplots
 
 st.set_page_config(
-    page_title="Electrophysiology Labs",
-    page_icon="🧊",
+    page_title="ECG Signal Analysis",
+    page_icon="❤️",
     layout="wide"
 )
 with st.sidebar:
@@ -41,6 +41,14 @@ if language=='Polish':
     demo_mode = st.checkbox('Tryb demo 😎', value=True)
 else:
     demo_mode = st.checkbox('Demo Mode 😎', value=True)
+if language=='Polish':
+    st.write("Twórcy: Tomir Domański, Weronika Krzysiek")
+    desc = "Aplikacja stworzona na podstawie bazy danych [PhysioNet PTDB](https://physionet.org/content/ptbdb/1.0.0/)."
+    st.markdown(desc,unsafe_allow_html=True)
+else:
+    st.write("Creators: Tomir Domański, Weronika Krzysiek")
+    desc="App created based on [PhysioNet PTDB](https://physionet.org/content/ptbdb/1.0.0/) database."
+    st.markdown(desc,unsafe_allow_html=True)
 if demo_mode:
     patient_files_label = ['Patient 001', 'Patient 002']
     if language=='Polish':
