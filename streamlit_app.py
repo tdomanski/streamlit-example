@@ -57,7 +57,8 @@ if language=='Polish':
 else:
     demo_mode = st.checkbox('Demo Mode 😎', value=True)
 if demo_mode:
-    patient_files_label = ['Patient 001', 'Patient 002']
+    # patient_files_label = ['Patient 001', 'Patient 002']
+    patient_files_label = ['Pacjent '+file.split('/patient')[-1] for file in patient_files]
     if language=='Polish':
         patient_files_label = [l.replace("Patient", "Pacjent") for l in patient_files_label]
         patients_selection = [st.selectbox('Wybierz pacjenta', patient_files_label).replace("Pacjent", "Patient")]
