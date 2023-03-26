@@ -8,16 +8,6 @@ import plotly.graph_objects as go
 import random
 from plotly.subplots import make_subplots
 
-# """
-# # Welcome to Streamlit!
-
-# Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
-
-# If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-# forums](https://discuss.streamlit.io).
-
-# In the meantime, below is an example of what you can do with just a few lines of code:
-# """
 st.set_page_config(
     page_title="Electrophysiology Labs",
     page_icon="🧊",
@@ -29,7 +19,6 @@ with st.sidebar:
 def load_files(path):
     dir_path = f'{path}/patient*'
     res = glob.glob(dir_path)
-    # return [file for file in os.listdir(path) if 'patient' in file]
     return res
 
 def load_record_file(record_name):
@@ -306,7 +295,6 @@ else:
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text='Patient '+re.split('Patient', participant)[-1])
-            # st.write(Admission)
             fig2.update_layout(autosize=True,
                   height=800)
             col10.plotly_chart(fig, use_container_width=False)   
