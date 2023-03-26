@@ -217,17 +217,42 @@ else:
         link='Function: [nk.signal_filter](https://neuropsychology.github.io/NeuroKit/functions/signal.html#signal-filter)'
     st.markdown(link,unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1,1,1])
-    diagnosis_anaylysed = ('Cardiomyopathy','Healthy control','Bundle branch block','Myocarditis','Myocardial infarction')
+    diagnosis_anaylysed = ['Cardiomyopathy','Healthy control','Bundle branch block','Myocarditis','Myocardial infarction']
     if st.session_state.patient_diagnosis in diagnosis_anaylysed:
         with st.form(key='my_form'):
-            diagnosis = st.radio("Try to diagnose patient", ('Cardiomyopathy','Healthy control','Bundle branch block','Myocarditis','Myocardial infarction')) 
+            if language=='Polish':
+                diagnosis_options = {
+                0: "Kardiomiopatia",
+                1: "Zdrowy pacjent",
+                2: "Blokada odnogi pęczka Hisa",
+                3: "Zapalenie mięśnia sercowego",
+                4: "Zawał serca",
+                }
+                diagnosis_selected = st.radio("Spróbuj zdiagnozować pacjenta", options = (0, 1, 2, 3, 4), format_func=lambda x: diagnosis_options.get(x))
+                diagnosis = diagnosis_anaylysed[diagnosis_selected]
+            else:
+                diagnosis_options = {
+                0: "Cardiomyopathy",
+                1: "Healthy control",
+                2: "Bundle branch block",
+                3: "Myocarditis",
+                4: "Myocardial infarction",
+                }
+                diagnosis_selected = st.radio("Try to diagnose patient", options = (0, 1, 2, 3, 4), format_func=lambda x: diagnosis_options.get(x)) 
+                diagnosis = diagnosis_anaylysed[diagnosis_selected]
             submit_button = st.form_submit_button(label='Submit')
             if submit_button:
                 st.session_state.diagnosed = True
                 if diagnosis == st.session_state.patient_diagnosis:
-                    st.write('Correct diagnosis! 🔥')
+                    if language=='Polish':
+                        st.write('Poprawna diagnoza! 🔥')
+                    else:
+                        st.write('Correct diagnosis! 🔥')
                 else:
-                    st.write('Incorrect diagnosis! 😔')
+                    if language=='Polish':
+                        st.write('Niepoprawna diagnoza! 😔')
+                    else:
+                        st.write('Incorrect diagnosis! 😔')
     if st.session_state.diagnosed or col2.button('Filter Signals'):
         for participant in patients_selection:
             dir = path+'patient'+participant.split('Patient ')[-1]
@@ -259,7 +284,6 @@ else:
             data["Sampling_Rate"] = 1000
             Admission = rec[1]['comments'][4]
             st.session_state.patient_diagnosis = Admission.split('Reason for admission: ')[1]
-            print(st.session_state.patient_diagnosis)
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
             if language=='Polish':
