@@ -19,7 +19,7 @@ with st.sidebar:
 
 def load_files(path):
     dir_path = f'{path}/patient*'
-    res = glob.glob(dir_path)
+    res = sorted(glob.glob(dir_path))
     return res
 
 def load_record_file(record_name):
