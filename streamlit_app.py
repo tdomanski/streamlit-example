@@ -26,7 +26,7 @@ def load_record_file(record_name):
     return wfdb.rdsamp(record_name=record_name[:-4])
 
 if 'random_lowcut' not in st.session_state:
-    st.session_state['random_lowcut'] = random.uniform(0.01, 0.9)
+    st.session_state['random_lowcut'] = round(random.uniform(0.01, 0.9),2)
 
 if 'random_highcut' not in st.session_state:
     st.session_state['random_highcut'] = random.randint(25, 200)
