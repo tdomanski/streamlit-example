@@ -129,11 +129,11 @@ if demo_mode:
                 channel = pd.DataFrame({str(signal_name): rec[0][:, 0]})
                 data = pd.concat([data, channel], axis=1)
                 signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
-                signal_good = nk.signal_filter(signal, lowcut=0.05,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
-                fig.append_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
+                signal_good = nk.signal_filter(signal, lowcut=0.05 ,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
+                fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
                                 mode='lines',
                                 name=signal_name),row=i+1, col=1)
-                fig2.append_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
+                fig2.add_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
                                 mode='lines',
                                 name=signal_name),row=i+1, col=1)                
             data["Participant"] = re.split('Patient', participant)[-1]
@@ -283,10 +283,10 @@ else:
                 data = pd.concat([data, channel], axis=1)
                 signal = nk.signal_filter(signal, lowcut=lowcut,highcut = highcut,method='butterworth', order=2, window_size='default', powerline=50, show=False)
                 signal_good = nk.signal_filter(signal, lowcut=0.05,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
-                fig.append_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
+                fig.add_trace(go.Scatter(y=signal[rand_range[0]:rand_range[1]],
                                 mode='lines',
                                 name=signal_name),row=i+1, col=1)
-                fig2.append_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
+                fig2.add_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
                                 mode='lines',
                                 name=signal_name),row=i+1, col=1)                
             data["Participant"] = re.split('Patient', participant)[-1]
