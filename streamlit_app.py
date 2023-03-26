@@ -158,6 +158,7 @@ if demo_mode:
                 fig2.update_layout(autosize=True,
                     height=800,
                     title_text=f'lowcut=0.05, highcut=150, method={"butterworth"}, order=2, powerline=50')
+            fig.update(fig, showlegend="false")
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
 else:
@@ -310,5 +311,6 @@ else:
                 fig2.update_layout(autosize=True,
                     height=800,
                     title_text=f'lowcut=0.05, highcut=150, method={"butterworth"}, order=2, powerline=50')
+            fig.update(fig, showlegend="false")
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
