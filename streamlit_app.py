@@ -258,6 +258,7 @@ else:
             data["Sample"] = range(len(data))
             data["Sampling_Rate"] = 1000
             Admission = rec[1]['comments'][4]
+            print(Admission)
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
             if language=='Polish':
