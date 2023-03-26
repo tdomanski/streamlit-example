@@ -38,6 +38,9 @@ def load_record_file(record_name):
 if 'done_diagnosis' not in st.session_state:
     st.session_state['diagnosed'] = False
 
+if 'patient_diagnosis' not in st.session_state:
+    st.session_state['patient_diagnosis'] = None
+
 if language=='Polish':
     st.title('Analiza sygnału EKG')
 else:
@@ -215,6 +218,16 @@ else:
     st.markdown(link,unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1,1,1])
     diagnosis_anaylysed = ('Cardiomyopathy','Healthy control','Bundle branch block','Myocarditis','Myocardial infarction')
+    if st.session_state.patient_diagnosis in diagnosis_anaylysed:
+        with st.form(key='my_form'):
+            diagnosis = st.radio("Try to diagnose patient", ('Cardiomyopathy','Healthy control','Bundle branch block','Myocarditis','Myocardial infarction')) 
+            submit_button = st.form_submit_button(label='Submit')
+            if submit_button:
+                st.session_state.diagnosed = True
+                if diagnosis == st.session_state.patient_diagnosis:
+                    st.write('Correct diagnosis! 🔥')
+                else:
+                    st.write('Incorrect diagnosis! 😔')
     if st.session_state.diagnosed or col2.button('Filter Signals'):
         for participant in patients_selection:
             dir = path+'patient'+participant.split('Patient ')[-1]
@@ -262,15 +275,3 @@ else:
                   height=800)
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
-        if Admission.split('Reason for admission: ')[1] in diagnosis_anaylysed:
-            with st.form(key='my_form'):
-                diagnosis = st.radio("Try to diagnose patient", ('Cardiomyopathy','Dysrhythmia','Hypertrophy','Valvular heart disease','Dysrhythmia','Healthy control','Bundle branch block','Myocarditis','Myocardial infarction','Unstable angina','Stable angina','Heart failure (NYHA 2)','Heart failure (NYHA 3)','Palpitation','Heart failure (NYHA 4)')) 
-                submit_button = st.form_submit_button(label='Submit')
-                if submit_button:
-                    st.session_state.diagnosed = True
-                    if diagnosis == Admission.split('Reason for admission: ')[1]:
-                        st.write('Correct diagnosis! 🔥')
-                    else:
-                        st.write('Incorrect diagnosis! 😔')
-        else:
-            st.write('Patient diagnosis not covered in this labs')
