@@ -295,7 +295,7 @@ else:
             if language=='Polish':
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text='Pacjent '+re.split('Pacjent', participant)[-1])
+                  title_text='Pacjent '+re.split('Patient', participant)[-1])
             else:
                 fig.update_layout(autosize=True,
                   height=800,
