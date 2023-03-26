@@ -253,6 +253,12 @@ else:
                         st.write('Niepoprawna diagnoza! 😔')
                     else:
                         st.write('Incorrect diagnosis! 😔')
+    else:
+        if language=='Polish':
+            st.write('Choroba tego pacjenta jest poza zakresem laboratorium')
+        else:
+            st.write('Diagnosis of this patient is out of laboratory scope')
+
     if st.session_state.diagnosed or col2.button('Filter Signals'):
         for participant in patients_selection:
             dir = path+'patient'+participant.split('Patient ')[-1]
