@@ -268,7 +268,7 @@ else:
                 submit_button = st.form_submit_button(label='Submit')
                 if submit_button:
                     st.session_state.diagnosed = True
-                    if diagnosis == diagnosis:
+                    if diagnosis == Admission.split('Reason for admission: ')[1]:
                         st.write('Correct diagnosis! 🔥')
                     else:
                         st.write('Incorrect diagnosis! 😔')
