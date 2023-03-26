@@ -163,7 +163,7 @@ if demo_mode:
                 st.subheader("Diagnoza: "+diagnosis_translation[diagnosis])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text=f'dolny_prog = {lowcut}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, powerline = {powerline}',
+                  title_text=f'dolny_prog = {round(lowcut,2)}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, powerline = {powerline}',
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                   height=800,
@@ -173,7 +173,7 @@ if demo_mode:
                 st.write("Diagnosis: "+diagnosis)
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text=f'lowcut = {lowcut}, highcut = {highcut}, method = {method}, order = {order}, powerline = {powerline}',
+                  title_text=f'lowcut = {round(lowcut,2)}, highcut = {highcut}, method = {method}, order = {order}, powerline = {powerline}',
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                     height=800,
@@ -320,7 +320,7 @@ else:
                 st.subheader('Pacjent '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text=f'dolny_prog = {lowcut}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, powerline = {powerline}',
+                  title_text=f'dolny_prog = {round(lowcut,2)}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, powerline = {powerline}',
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                   height=800,
@@ -329,7 +329,7 @@ else:
                 st.subheader('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text=f'lowcut = {lowcut}, highcut = {highcut}, method = {method}, order = {order}, powerline = {powerline}',
+                  title_text=f'lowcut = {round(lowcut,2)}, highcut = {highcut}, method = {method}, order = {order}, powerline = {powerline}',
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                     height=800,
