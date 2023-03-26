@@ -119,8 +119,8 @@ if demo_mode:
             data = pd.DataFrame()
             rec = load_record_file(file)
             signal = rec[0][:, 0]
-            rand_value = random.randint(1000, signal.shape[0]-1000)
-            rand_range = (rand_value, rand_value+3000)
+            rand_value = random.randint(5000, signal.shape[0]-5000)
+            rand_range = (rand_value, rand_value+5000)
             fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
             fig2 = make_subplots(rows=12, cols=1, shared_xaxes=True)
             col10, col11 = st.columns(2)
@@ -267,8 +267,8 @@ else:
             data = pd.DataFrame()
             rec = load_record_file(file)
             signal = rec[0][:, 0]
-            rand_value = random.randint(1000, signal.shape[0]-1000)
-            rand_range = (rand_value, rand_value+3000)
+            rand_value = random.randint(5000, signal.shape[0]-5000)
+            rand_range = (rand_value, rand_value+5000)
             fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
             fig2 = make_subplots(rows=12, cols=1, shared_xaxes=True)
             col10, col11 = st.columns(2)
@@ -293,15 +293,13 @@ else:
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
             if language=='Polish':
-                st.write('Pacjent '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text='Pacjent '+re.split('Pacjent', participant)[-1]+' - '+Admission)
+                  title_text='Pacjent '+re.split('Pacjent', participant)[-1])
             else:
-                st.write('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text='Pacjent '+re.split('Patient', participant)[-1]+' - '+Admission)
+                  title_text='Patient '+re.split('Patient', participant)[-1])
             # st.write(Admission)
             fig2.update_layout(autosize=True,
                   height=800)
