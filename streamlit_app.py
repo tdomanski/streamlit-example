@@ -112,7 +112,7 @@ if demo_mode:
         link='Function: [nk.signal_filter](https://neuropsychology.github.io/NeuroKit/functions/signal.html#signal-filter)'
     st.markdown(link,unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1,1,1])
-    if col2.button('Filter Signals'):
+    if col2.button('Filter Signals' if language=='Polish' else 'Filter Signals'):
         for participant in patients_selection:
             dir = path+'patient'+participant.split('Patient ')[-1]
             filename = glob.glob(dir+'/*.dat*')[0]
@@ -265,7 +265,7 @@ else:
         else:
             st.write('Diagnosis of this patient is out of laboratory scope')
 
-    if st.session_state.diagnosed or col2.button('Filter Signals'):
+    if st.session_state.diagnosed or col2.button('Filter Signals' if language=='Polish' else 'Filter Signals'):
         for participant in patients_selection:
             dir = path+'patient'+participant.split('Patient ')[-1]
             filename = glob.glob(dir+'/*.dat*')[0]
