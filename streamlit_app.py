@@ -96,11 +96,11 @@ if demo_mode:
                 order = st.number_input('Insert an order number (Butterworth & Savgol)', value=2, disabled=True)
     with col7:
         if language=='Polish':
-            powerline = st.number_input('Podaj numer linii mocy', value=50)
+            powerline = st.number_input('Powerline', value=50)
         else:
             powerline = st.number_input('Insert a powerline number', value=50)
     if language=='Polish':
-        code='''przefiltrowany_sygnal = nk.signal_filter(sygnal, dolny_prog, gorny_prog, metoda, rzad, moc_linii)'''
+        code='''przefiltrowany_sygnal = nk.signal_filter(sygnal, dolny_prog, gorny_prog, metoda, rzad, powerline)'''
     else:
         code = '''filtered_signal = nk.signal_filter(input_signal, lowcut, highcut, method, order, powerline)'''
     st.code(code, language='python')
@@ -157,11 +157,11 @@ if demo_mode:
                 st.subheader("Diagnoza: "+diagnosis_translation[diagnosis])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text=f'dolny_prog = {lowcut}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, moc_linii = {powerline}',
+                  title_text=f'dolny_prog = {lowcut}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, powerline = {powerline}',
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                   height=800,
-                  title_text=f'dolny_prog = 0.05, gorny_prog = 150, metoda = butterworth, rzad = 2, moc_linii = 50')
+                  title_text=f'dolny_prog = 0.05, gorny_prog = 150, metoda = butterworth, rzad = 2, powerline = 50')
             else:
                 st.write('Patient '+re.split('Patient', participant)[-1])
                 st.write("Diagnosis: "+diagnosis)
@@ -221,11 +221,11 @@ else:
                 order = st.number_input('Insert an order number (Butterworth & Savgol)', value=2, disabled=True)
     with col7:
         if language=='Polish':
-            powerline = st.number_input('Podaj numer linii mocy', value=50)
+            powerline = st.number_input('Powerline', value=50)
         else:
             powerline = st.number_input('Insert a powerline number', value=50)
     if language=='Polish':
-        code='''przefiltrowany_sygnal = nk.signal_filter(sygnal, dolny_prog, gorny_prog, metoda, rzad, moc_linii)'''
+        code='''przefiltrowany_sygnal = nk.signal_filter(sygnal, dolny_prog, gorny_prog, metoda, rzad, powerline)'''
     else:
         code = '''filtered_signal = nk.signal_filter(input_signal, lowcut, highcut, method, order, powerline)'''
     st.code(code, language='python')
@@ -314,11 +314,11 @@ else:
                 st.subheader('Pacjent '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
-                  title_text=f'dolny_prog = {lowcut}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, moc_linii = {powerline}',
+                  title_text=f'dolny_prog = {lowcut}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, powerline = {powerline}',
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                   height=800,
-                  title_text=f'dolny_prog = 0.05, gorny_prog = 150, metoda = butterworth, rzad = 2, moc_linii = 50')
+                  title_text=f'dolny_prog = 0.05, gorny_prog = 150, metoda = butterworth, rzad = 2, powerline = 50')
             else:
                 st.subheader('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
