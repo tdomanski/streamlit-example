@@ -146,7 +146,7 @@ if demo_mode:
             data["Age"] = rec[1]['comments'][0]
             diagnosis = Admission.split('Reason for admission: ')[1]
             if language=='Polish':
-                st.write('Pacjent '+re.split('Patient', participant)[-1])
+                st.subheader('Pacjent '+re.split('Patient', participant)[-1])
                 diagnosis_translation = {
                 "Cardiomyopathy":"Kardiomiopatia",
                 "Healthy control":"Zdrowy pacjent",
@@ -154,7 +154,7 @@ if demo_mode:
                 "Myocarditis":"Zapalenie mięśnia sercowego",
                 "Myocardial infarction":"Zawał serca",
                 }
-                st.write("Diagnoza: "+diagnosis_translation[diagnosis])
+                st.subheader("Diagnoza: "+diagnosis_translation[diagnosis])
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'dolny_prog = {lowcut}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, moc_linii = {powerline}',
@@ -289,7 +289,6 @@ else:
             rand_range = (rand_value, rand_value+5000)
             fig = make_subplots(rows=12, cols=1, shared_xaxes=True)
             fig2 = make_subplots(rows=12, cols=1, shared_xaxes=True)
-            col10, col11 = st.columns(2)
             for i in range(12):
                 signal_name = rec[1]['sig_name'][i]
                 signal = rec[0][:, i]
@@ -312,7 +311,7 @@ else:
             data["Sex"] = rec[1]['comments'][1]
             data["Age"] = rec[1]['comments'][0]
             if language=='Polish':
-                st.write('Pacjent '+re.split('Patient', participant)[-1])
+                st.subheader('Pacjent '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'dolny_prog = {lowcut}, gorny_prog = {highcut}, metoda = {method}, rzad = {order}, moc_linii = {powerline}',
@@ -321,7 +320,7 @@ else:
                   height=800,
                   title_text=f'dolny_prog = 0.05, gorny_prog = 150, metoda = butterworth, rzad = 2, moc_linii = 50')
             else:
-                st.write('Patient '+re.split('Patient', participant)[-1])
+                st.subheader('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
                   height=800,
                   title_text=f'lowcut = {lowcut}, highcut = {highcut}, method = {method}, order = {order}, powerline = {powerline}',
@@ -329,5 +328,6 @@ else:
                 fig2.update_layout(autosize=True,
                     height=800,
                     title_text=f'lowcut = 0.05, highcut = 150, method = butterworth, order = 2, powerline = 50')
+            col10, col11 = st.columns(2)
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
