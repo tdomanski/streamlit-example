@@ -23,8 +23,8 @@ st.set_page_config(
     page_icon="🧊",
     layout="wide"
 )
-
-language = st.selectbox('Select a language', ['Polish', 'English'])
+with st.sidebar:
+    language = st.selectbox('Wybierz język aplikacji/Select app language', ['Polish', 'English'])
 
 def load_files(path):
     dir_path = f'{path}/patient*'
@@ -55,7 +55,8 @@ else:
 if demo_mode:
     patient_files_label = ['Patient 001', 'Patient 002']
     if language=='Polish':
-        patients_selection = [st.selectbox('Wybierz pacjenta', patient_files_label)]
+        patient_files_label = [l.replace("Patient", "Pacjent") for l in patient_files_label]
+        patients_selection = [st.selectbox('Wybierz pacjenta', patient_files_label).replace("Pacjent", "Patient")]
     else:
         patients_selection = [st.selectbox('Choose patient', patient_files_label)]
     code = '''import neurokit2 as nk'''
