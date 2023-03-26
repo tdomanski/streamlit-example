@@ -25,6 +25,12 @@ def load_files(path):
 def load_record_file(record_name):
     return wfdb.rdsamp(record_name=record_name[:-4])
 
+if 'random_lowcut' not in st.session_state:
+    st.session_state['random_lowcut'] = random.uniform(0.01, 0.9)
+
+if 'random_highcut' not in st.session_state:
+    st.session_state['random_highcut'] = random.randint(25, 200)
+
 if 'done_diagnosis' not in st.session_state:
     st.session_state['diagnosed'] = False
 
@@ -69,14 +75,14 @@ if demo_mode:
     col7, col8 = st.columns(2)
     with col1:
         if language=='Polish':
-            lowcut = st.number_input('Podaj dolny próg filtracji', value=0.05)
+            lowcut = st.number_input('Podaj dolny próg filtracji', value=st.session_state.random_lowcut)
         else:
-            lowcut = st.number_input('Insert a lowcut number', value=0.05)
+            lowcut = st.number_input('Insert a lowcut number', value=st.session_state.random_lowcut)
     with col2:
         if language=='Polish':
-            highcut = st.number_input('Podaj górny próg filtracji', value=150)
+            highcut = st.number_input('Podaj górny próg filtracji', value=st.session_state.random_highcut)
         else:
-            highcut = st.number_input('Insert a highcut number', value=150)
+            highcut = st.number_input('Insert a highcut number', value=st.session_state.random_highcut)
     with col3:
         if language=='Polish':
             method = st.selectbox('Wybierz metodę filtracji', ['butterworth', 'fir', 'bessel', 'savgol'])
@@ -161,7 +167,7 @@ if demo_mode:
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                   height=800,
-                  title_text=f'dolny_prog = 0.05, gorny_prog = 150, metoda = butterworth, rzad = 2, powerline = 50')
+                  title_text=f'Zalecane parametry filtru')
             else:
                 st.write('Patient '+re.split('Patient', participant)[-1])
                 st.write("Diagnosis: "+diagnosis)
@@ -171,7 +177,7 @@ if demo_mode:
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                     height=800,
-                    title_text=f'lowcut = 0.05, highcut = 150, method = butterworth, order = 2, powerline = 50')
+                    title_text=f'Recommended filter parameters')
             col10, col11 = st.columns(2)
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
@@ -194,14 +200,14 @@ else:
     col7, col8 = st.columns(2)
     with col1:
         if language=='Polish':
-            lowcut = st.number_input('Podaj dolny próg filtracji', value=0.05)
+            lowcut = st.number_input('Podaj dolny próg filtracji', value=st.session_state.random_lowcut)
         else:
-            lowcut = st.number_input('Insert a lowcut number', value=0.05)
+            lowcut = st.number_input('Insert a lowcut number', value=st.session_state.random_lowcut)
     with col2:
         if language=='Polish':
-            highcut = st.number_input('Podaj górny próg filtracji', value=150)
+            highcut = st.number_input('Podaj górny próg filtracji', value=st.session_state.random_highcut)
         else:
-            highcut = st.number_input('Insert a highcut number', value=150)
+            highcut = st.number_input('Insert a highcut number', value=st.session_state.random_highcut)
     with col3:
         if language=='Polish':
             method = st.selectbox('Wybierz metodę filtracji', ['butterworth', 'fir', 'bessel', 'savgol'])
@@ -318,7 +324,7 @@ else:
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                   height=800,
-                  title_text=f'dolny_prog = 0.05, gorny_prog = 150, metoda = butterworth, rzad = 2, powerline = 50')
+                  title_text=f'Zalecane parametry filtru')
             else:
                 st.subheader('Patient '+re.split('Patient', participant)[-1])
                 fig.update_layout(autosize=True,
@@ -327,7 +333,7 @@ else:
                   showlegend=False)
                 fig2.update_layout(autosize=True,
                     height=800,
-                    title_text=f'lowcut = 0.05, highcut = 150, method = butterworth, order = 2, powerline = 50')
+                    title_text=f'Recommended filter parameters')
             col10, col11 = st.columns(2)
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
