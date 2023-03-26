@@ -159,10 +159,11 @@ if demo_mode:
             col10.plotly_chart(fig, use_container_width=False)   
             col11.plotly_chart(fig2, use_container_width=False)
 else:
-    patient_files_label = ['Patient '+file.split('/patient')[-1] for file in patient_files]
     if language=='Polish':
-        patients_selection = [st.selectbox('Wybierz pacjenta', patient_files_label)]
+        patient_files_label = ['Pacjent '+file.split('/patient')[-1] for file in patient_files]
+        patients_selection = [st.selectbox('Wybierz pacjenta', patient_files_label).replace("Pacjent", "Patient")]
     else:
+        patient_files_label = ['Patient '+file.split('/patient')[-1] for file in patient_files]
         patients_selection = [st.selectbox('Choose patient', patient_files_label)]
     code = '''import neurokit2 as nk'''
     st.code(code, language='python')
