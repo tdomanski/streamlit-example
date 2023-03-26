@@ -39,10 +39,6 @@ else:
 path = 'physionet.org/files/ptbdb/1.0.0/'
 patient_files = load_files(path)
 if language=='Polish':
-    demo_mode = st.checkbox('Tryb demo 😎', value=True)
-else:
-    demo_mode = st.checkbox('Demo Mode 😎', value=True)
-if language=='Polish':
     st.write("Twórcy: Tomir Domański, Weronika Krzysiek")
     desc = "Aplikacja stworzona na podstawie bazy danych [PhysioNet PTDB](https://physionet.org/content/ptbdb/1.0.0/)."
     st.markdown(desc,unsafe_allow_html=True)
@@ -50,6 +46,10 @@ else:
     st.write("Creators: Tomir Domański, Weronika Krzysiek")
     desc="App created based on [PhysioNet PTDB](https://physionet.org/content/ptbdb/1.0.0/) database."
     st.markdown(desc,unsafe_allow_html=True)
+if language=='Polish':
+    demo_mode = st.checkbox('Tryb demo 😎', value=True)
+else:
+    demo_mode = st.checkbox('Demo Mode 😎', value=True)
 if demo_mode:
     patient_files_label = ['Patient 001', 'Patient 002']
     if language=='Polish':
