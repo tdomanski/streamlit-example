@@ -132,7 +132,8 @@ if demo_mode:
                 signal_good = nk.signal_filter(signal, lowcut=0.05 ,highcut = 150,method='butterworth', order=2, window_size='default', powerline=50, show=False)
                 fig.add_trace(go.Scatter(y=signal_filtered[rand_range[0]:rand_range[1]],
                                 mode='lines',
-                                name=signal_name),row=i+1, col=1)
+                                name=signal_name,
+                                line = dict(width = 2)),row=i+1, col=1)
                 fig2.add_trace(go.Scatter(y=signal_good[rand_range[0]:rand_range[1]],
                                 mode='lines',
                                 name=signal_name),row=i+1, col=1)                
